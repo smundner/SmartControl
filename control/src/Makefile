@@ -1,5 +1,5 @@
 CC = gcc
-OBJECTS = main.o ethernet.o
+OBJECTS = main.o ethernet.o sql_handler.o
 
 TARGET = SmartGardenControl
 
