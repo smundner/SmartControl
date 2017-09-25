@@ -1,3 +1,5 @@
+VPATH = ./src
+BUILDDIR = ./build
 CC = gcc
 OBJECTS = main.o ethernet.o sql_handler.o arp_handler.o
 
@@ -7,15 +9,15 @@ GTKFLAGS =`pkg-config --cflags gtk+-3.0 --libs`
 CFLAGS = -std=c11 -lpthread -ldl -lsqlite3
 #CFLAGS += $(GTKFLAGS)
 
-$(TARGET): $(OBJECTS)
+$(BUILDDIR)/$(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(TARGET) $(CFLAGS) 
 
-main.o: main.c main.h
+$(BUILDDIR)/main.o: main.c main.h
 	$(CC) -c $(CFLAGS) $< -o $@
 	
 
 
-%.o: %.c %.h
+$(BUILDDIR)/%.o: %.c %.h
 	$(CC) -c $(CFLAGS)  $< -o $@
 clean:
-	rm $(TARGET) *.o
+	rm $(BUILDDIR)/$(TARGET) $(BUILDDIR)/*.o
